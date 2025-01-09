@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { Course } from "./courseApi";
 
 // const USER_API = `${import.meta.env.VITE_BACKEND_URL}/api/v1/`;
-const USER_API = `${process.env.BACKEND_URL}/api/v1`;
+const USER_API = `${process.env.REACT_APP_BACKEND_URL}/api/v1`;
 
 export interface LectureProgressType {
   lectureId: string;
