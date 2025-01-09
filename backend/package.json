@@ -6,7 +6,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon ./src/app.ts",
     "start": "node ./dist/app.js",
-    "build": "tsc"
+    "build": "tsc",
+    "stripe": "stripe listen --forward-to http://localhost:7000/api/v1/webhook"
   },
   "keywords": [],
   "author": "",
