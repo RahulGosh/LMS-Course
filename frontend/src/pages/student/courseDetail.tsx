@@ -1,6 +1,19 @@
 import React from "react";
-import { Button, Card, Avatar, Badge, Typography, Divider, Row, Col } from "antd";
-import { LockOutlined, PlayCircleOutlined, InfoCircleOutlined } from "@ant-design/icons";
+import {
+  Button,
+  Card,
+  Avatar,
+  Badge,
+  Typography,
+  Divider,
+  Row,
+  Col,
+} from "antd";
+import {
+  LockOutlined,
+  PlayCircleOutlined,
+  InfoCircleOutlined,
+} from "@ant-design/icons";
 import ReactPlayer from "react-player";
 import { useNavigate, useParams } from "react-router-dom";
 import { useGetCourseDetailWithStatusQuery } from "../../features/api/purchaseApi";
@@ -14,15 +27,20 @@ const CourseDetail: React.FC = () => {
   const courseId = params.courseId || "";
   const navigate = useNavigate();
 
-  const { data, isLoading, isError } = useGetCourseDetailWithStatusQuery(courseId, {
-    skip: !courseId,
-  });
+  const { data, isLoading, isError } = useGetCourseDetailWithStatusQuery(
+    courseId,
+    {
+      skip: !courseId,
+    }
+  );
 
   if (isLoading) return <h1>Loading...</h1>;
   if (isError) return <h1>Failed to load course details</h1>;
 
   const course = data?.course;
   const purchased = data?.purchased;
+
+  const ReactPlayerAny = ReactPlayer as any;
 
   const handleContinueCourse = () => {
     if (purchased) {
@@ -36,7 +54,9 @@ const CourseDetail: React.FC = () => {
       <div className="bg-[#2D2F31] text-white">
         <div className="max-w-7xl mx-auto py-8 px-4 md:px-8 flex flex-col gap-2">
           <Title level={2}>{course?.courseTitle || "Course Title"}</Title>
-          <Text className="text-base md:text-lg">{course?.subTitle || "Course Sub-title"}</Text>
+          <Text className="text-base md:text-lg">
+            {course?.subTitle || "Course Sub-title"}
+          </Text>
           <p>
             Created By{" "}
             <span className="text-[#C0C4FC] underline italic">
@@ -95,14 +115,17 @@ const CourseDetail: React.FC = () => {
           <Card>
             <div className="p-4 flex flex-col">
               <div className="w-full aspect-video mb-4">
-                <ReactPlayer
+                <ReactPlayerAny
                   width="100%"
                   height="100%"
                   url={course?.lectures?.[0].videoUrl || ""}
                   controls={true}
                 />
+                ;
               </div>
-              <Title level={4}>{course?.lectures?.[0].lectureTitle || "Lecture Title"}</Title>
+              <Title level={4}>
+                {course?.lectures?.[0].lectureTitle || "Lecture Title"}
+              </Title>
               <Divider className="my-2" />
               <Text className="text-lg md:text-xl font-semibold">
                 {course?.coursePrice
