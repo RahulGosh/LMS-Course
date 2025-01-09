@@ -29,7 +29,7 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.use(express.json());
 app.use(cookieParser());
 const corsOptions = {
-    origin: "http://localhost:3000",
+    origin: "https://lms-course-nine.vercel.app",
     credentials: true
 }
 app.use(cors(corsOptions));
