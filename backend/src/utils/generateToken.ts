@@ -21,7 +21,7 @@ export const generateToken = (
         .cookie("token", token, {
             secure: process.env.NODE_ENV === "production",
             httpOnly: true,
-            sameSite: "lax",
+            sameSite: "strict",
             maxAge: 24 * 60 * 60 * 1000, // 1 day
         })
         .json({
@@ -30,6 +30,4 @@ export const generateToken = (
             userId,
             user,
         });
-        console.log("Cookie set with token:", token);
-
 };
